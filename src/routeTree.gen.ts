@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CookbooksIndexRouteImport } from './routes/cookbooks.index'
+import { Route as CookbooksHandleRouteImport } from './routes/cookbooks.$handle'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CookbooksIndexRoute = CookbooksIndexRouteImport.update({
+  id: '/cookbooks/',
+  path: '/cookbooks/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookbooksHandleRoute = CookbooksHandleRouteImport.update({
+  id: '/cookbooks/$handle',
+  path: '/cookbooks/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cookbooks/$handle': typeof CookbooksHandleRoute
+  '/cookbooks/': typeof CookbooksIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cookbooks/$handle': typeof CookbooksHandleRoute
+  '/cookbooks': typeof CookbooksIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cookbooks/$handle': typeof CookbooksHandleRoute
+  '/cookbooks/': typeof CookbooksIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/cookbooks/$handle' | '/cookbooks/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/cookbooks/$handle' | '/cookbooks'
+  id: '__root__' | '/' | '/cookbooks/$handle' | '/cookbooks/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CookbooksHandleRoute: typeof CookbooksHandleRoute
+  CookbooksIndexRoute: typeof CookbooksIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cookbooks/': {
+      id: '/cookbooks/'
+      path: '/cookbooks'
+      fullPath: '/cookbooks/'
+      preLoaderRoute: typeof CookbooksIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookbooks/$handle': {
+      id: '/cookbooks/$handle'
+      path: '/cookbooks/$handle'
+      fullPath: '/cookbooks/$handle'
+      preLoaderRoute: typeof CookbooksHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CookbooksHandleRoute: CookbooksHandleRoute,
+  CookbooksIndexRoute: CookbooksIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
