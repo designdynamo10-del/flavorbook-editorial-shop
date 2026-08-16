@@ -10,33 +10,193 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccountRouteImport } from './routes/account'
+import { Route as FreeRecipesRouteImport } from './routes/free-recipes'
+import { Route as HelpRouteImport } from './routes/help'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as CategoriesIndexRouteImport } from './routes/categories.index'
+import { Route as CategoriesSlugRouteImport } from './routes/categories.$slug'
+import { Route as CookbooksIndexRouteImport } from './routes/cookbooks.index'
+import { Route as CookbooksHandleRouteImport } from './routes/cookbooks.$handle'
+import { Route as RecipesIndexRouteImport } from './routes/recipes.index'
+import { Route as RecipesSlugRouteImport } from './routes/recipes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FreeRecipesRoute = FreeRecipesRouteImport.update({
+  id: '/free-recipes',
+  path: '/free-recipes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesIndexRoute = CategoriesIndexRouteImport.update({
+  id: '/categories/',
+  path: '/categories/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
+  id: '/categories/$slug',
+  path: '/categories/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookbooksIndexRoute = CookbooksIndexRouteImport.update({
+  id: '/cookbooks/',
+  path: '/cookbooks/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookbooksHandleRoute = CookbooksHandleRouteImport.update({
+  id: '/cookbooks/$handle',
+  path: '/cookbooks/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecipesIndexRoute = RecipesIndexRouteImport.update({
+  id: '/recipes/',
+  path: '/recipes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecipesSlugRoute = RecipesSlugRouteImport.update({
+  id: '/recipes/$slug',
+  path: '/recipes/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/free-recipes': typeof FreeRecipesRoute
+  '/help': typeof HelpRoute
+  '/search': typeof SearchRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/categories/$slug': typeof CategoriesSlugRoute
+  '/cookbooks/$handle': typeof CookbooksHandleRoute
+  '/recipes/$slug': typeof RecipesSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/categories/': typeof CategoriesIndexRoute
+  '/cookbooks/': typeof CookbooksIndexRoute
+  '/recipes/': typeof RecipesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/free-recipes': typeof FreeRecipesRoute
+  '/help': typeof HelpRoute
+  '/search': typeof SearchRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/categories/$slug': typeof CategoriesSlugRoute
+  '/cookbooks/$handle': typeof CookbooksHandleRoute
+  '/recipes/$slug': typeof RecipesSlugRoute
+  '/blog': typeof BlogIndexRoute
+  '/categories': typeof CategoriesIndexRoute
+  '/cookbooks': typeof CookbooksIndexRoute
+  '/recipes': typeof RecipesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/free-recipes': typeof FreeRecipesRoute
+  '/help': typeof HelpRoute
+  '/search': typeof SearchRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/categories/$slug': typeof CategoriesSlugRoute
+  '/cookbooks/$handle': typeof CookbooksHandleRoute
+  '/recipes/$slug': typeof RecipesSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/categories/': typeof CategoriesIndexRoute
+  '/cookbooks/': typeof CookbooksIndexRoute
+  '/recipes/': typeof RecipesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/account'
+    | '/free-recipes'
+    | '/help'
+    | '/search'
+    | '/blog/$slug'
+    | '/categories/$slug'
+    | '/cookbooks/$handle'
+    | '/recipes/$slug'
+    | '/blog/'
+    | '/categories/'
+    | '/cookbooks/'
+    | '/recipes/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/account'
+    | '/free-recipes'
+    | '/help'
+    | '/search'
+    | '/blog/$slug'
+    | '/categories/$slug'
+    | '/cookbooks/$handle'
+    | '/recipes/$slug'
+    | '/blog'
+    | '/categories'
+    | '/cookbooks'
+    | '/recipes'
+  id:
+    | '__root__'
+    | '/'
+    | '/account'
+    | '/free-recipes'
+    | '/help'
+    | '/search'
+    | '/blog/$slug'
+    | '/categories/$slug'
+    | '/cookbooks/$handle'
+    | '/recipes/$slug'
+    | '/blog/'
+    | '/categories/'
+    | '/cookbooks/'
+    | '/recipes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountRoute: typeof AccountRoute
+  FreeRecipesRoute: typeof FreeRecipesRoute
+  HelpRoute: typeof HelpRoute
+  SearchRoute: typeof SearchRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  CategoriesSlugRoute: typeof CategoriesSlugRoute
+  CookbooksHandleRoute: typeof CookbooksHandleRoute
+  RecipesSlugRoute: typeof RecipesSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  CategoriesIndexRoute: typeof CategoriesIndexRoute
+  CookbooksIndexRoute: typeof CookbooksIndexRoute
+  RecipesIndexRoute: typeof RecipesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +208,107 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/free-recipes': {
+      id: '/free-recipes'
+      path: '/free-recipes'
+      fullPath: '/free-recipes'
+      preLoaderRoute: typeof FreeRecipesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories/': {
+      id: '/categories/'
+      path: '/categories'
+      fullPath: '/categories/'
+      preLoaderRoute: typeof CategoriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories/$slug': {
+      id: '/categories/$slug'
+      path: '/categories/$slug'
+      fullPath: '/categories/$slug'
+      preLoaderRoute: typeof CategoriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookbooks/': {
+      id: '/cookbooks/'
+      path: '/cookbooks'
+      fullPath: '/cookbooks/'
+      preLoaderRoute: typeof CookbooksIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookbooks/$handle': {
+      id: '/cookbooks/$handle'
+      path: '/cookbooks/$handle'
+      fullPath: '/cookbooks/$handle'
+      preLoaderRoute: typeof CookbooksHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recipes/': {
+      id: '/recipes/'
+      path: '/recipes'
+      fullPath: '/recipes/'
+      preLoaderRoute: typeof RecipesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recipes/$slug': {
+      id: '/recipes/$slug'
+      path: '/recipes/$slug'
+      fullPath: '/recipes/$slug'
+      preLoaderRoute: typeof RecipesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountRoute: AccountRoute,
+  FreeRecipesRoute: FreeRecipesRoute,
+  HelpRoute: HelpRoute,
+  SearchRoute: SearchRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  CategoriesSlugRoute: CategoriesSlugRoute,
+  CookbooksHandleRoute: CookbooksHandleRoute,
+  RecipesSlugRoute: RecipesSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  CategoriesIndexRoute: CategoriesIndexRoute,
+  CookbooksIndexRoute: CookbooksIndexRoute,
+  RecipesIndexRoute: RecipesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
