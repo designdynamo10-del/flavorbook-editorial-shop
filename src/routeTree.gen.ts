@@ -10,12 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FreeRecipesRouteImport } from './routes/free-recipes'
 import { Route as CookbooksIndexRouteImport } from './routes/cookbooks.index'
 import { Route as CookbooksHandleRouteImport } from './routes/cookbooks.$handle'
+import { Route as RecipesIndexRouteImport } from './routes/recipes.index'
+import { Route as RecipesSlugRouteImport } from './routes/recipes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FreeRecipesRoute = FreeRecipesRouteImport.update({
+  id: '/free-recipes',
+  path: '/free-recipes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CookbooksIndexRoute = CookbooksIndexRouteImport.update({
@@ -28,35 +36,76 @@ const CookbooksHandleRoute = CookbooksHandleRouteImport.update({
   path: '/cookbooks/$handle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RecipesIndexRoute = RecipesIndexRouteImport.update({
+  id: '/recipes/',
+  path: '/recipes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecipesSlugRoute = RecipesSlugRouteImport.update({
+  id: '/recipes/$slug',
+  path: '/recipes/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/free-recipes': typeof FreeRecipesRoute
   '/cookbooks/$handle': typeof CookbooksHandleRoute
+  '/recipes/$slug': typeof RecipesSlugRoute
   '/cookbooks/': typeof CookbooksIndexRoute
+  '/recipes/': typeof RecipesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/free-recipes': typeof FreeRecipesRoute
   '/cookbooks/$handle': typeof CookbooksHandleRoute
+  '/recipes/$slug': typeof RecipesSlugRoute
   '/cookbooks': typeof CookbooksIndexRoute
+  '/recipes': typeof RecipesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/free-recipes': typeof FreeRecipesRoute
   '/cookbooks/$handle': typeof CookbooksHandleRoute
+  '/recipes/$slug': typeof RecipesSlugRoute
   '/cookbooks/': typeof CookbooksIndexRoute
+  '/recipes/': typeof RecipesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cookbooks/$handle' | '/cookbooks/'
+  fullPaths:
+    | '/'
+    | '/free-recipes'
+    | '/cookbooks/$handle'
+    | '/recipes/$slug'
+    | '/cookbooks/'
+    | '/recipes/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cookbooks/$handle' | '/cookbooks'
-  id: '__root__' | '/' | '/cookbooks/$handle' | '/cookbooks/'
+  to:
+    | '/'
+    | '/free-recipes'
+    | '/cookbooks/$handle'
+    | '/recipes/$slug'
+    | '/cookbooks'
+    | '/recipes'
+  id:
+    | '__root__'
+    | '/'
+    | '/free-recipes'
+    | '/cookbooks/$handle'
+    | '/recipes/$slug'
+    | '/cookbooks/'
+    | '/recipes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FreeRecipesRoute: typeof FreeRecipesRoute
   CookbooksHandleRoute: typeof CookbooksHandleRoute
+  RecipesSlugRoute: typeof RecipesSlugRoute
   CookbooksIndexRoute: typeof CookbooksIndexRoute
+  RecipesIndexRoute: typeof RecipesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/free-recipes': {
+      id: '/free-recipes'
+      path: '/free-recipes'
+      fullPath: '/free-recipes'
+      preLoaderRoute: typeof FreeRecipesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cookbooks/': {
@@ -82,13 +138,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CookbooksHandleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/recipes/': {
+      id: '/recipes/'
+      path: '/recipes'
+      fullPath: '/recipes/'
+      preLoaderRoute: typeof RecipesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recipes/$slug': {
+      id: '/recipes/$slug'
+      path: '/recipes/$slug'
+      fullPath: '/recipes/$slug'
+      preLoaderRoute: typeof RecipesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FreeRecipesRoute: FreeRecipesRoute,
   CookbooksHandleRoute: CookbooksHandleRoute,
+  RecipesSlugRoute: RecipesSlugRoute,
   CookbooksIndexRoute: CookbooksIndexRoute,
+  RecipesIndexRoute: RecipesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
